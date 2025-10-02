@@ -21,13 +21,19 @@
   8. Moving with clicking.
   9. Check who the next player is.
   10. Validate the move.
-  11. Add a mox that displays the past moves.
-  12. Add move confirm or discard.
-  13. Display the consequence of the move.
+  11. Add a box that displays the past moves.
+  12. Add discard button.
+    - Demo: Discard button discards the start and end position clicked while 
+    - Note:
+  - Add enter button. 
+    - Demo: Enter button performs and updates the positions accordingly
+    otherwise doesn't do anything.
+    - Note: 
+  13. Display the consequence of the move:
+    - Demo: Performs the move and checks the results
+    - Note: 
   
 > [!NOTE]
 > If we have time, we may also implement special moves.
 > If we have the time to, we may do checking of checks and checkmate.
 > We will not implement any kind of chess solving algorithm.
-
-
