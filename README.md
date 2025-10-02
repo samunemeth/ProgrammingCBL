@@ -2,20 +2,28 @@
 
 ## Backlog
 
-  - Grid
-  - Pieces
-  - Show the grid and the Pieces
-  - Show the grid labels.
-  - Assign start positions
-  - Move piece with from the terminal with positions, and update the piece position.
-  - Record what move have been played.
-  - Moving with clicking.
-  - Check who the next player is.
-  - Validate the move.
-  
-  - Add a mox that displays the past moves.
-  - Add move confirm or discard.
-  - Display the consequence of the move.
+  1. Implement a grid:
+    - Demo: Print the contents of the grid to the console.
+    - Note: 2D array to console.
+  2. Pieces:
+    - Demo: Print the contents of the grid to the console.
+    - Note: The cells are objects, and will have variables storing the piece.
+  3. Show the grid and the Pieces:
+    - Demo: Compare the pieces and grid displayed to the ones coded,
+        and printed to the console.
+    - Note: Display the background color of the grind and the pieces on top of that.
+  4. Show the grid labels:
+    - Demo: Check if the grid labels are correctly displayed.
+    - Note: On the side of the canvas.
+  5. Assign start positions
+  6. Move piece with from the terminal with positions, and update the piece position.
+  7. Record what move have been played.
+  8. Moving with clicking.
+  9. Check who the next player is.
+  10. Validate the move.
+  11. Add a mox that displays the past moves.
+  12. Add move confirm or discard.
+  13. Display the consequence of the move.
   
 > [!NOTE]
 > If we have time, we may also implement special moves.
