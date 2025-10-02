@@ -6,6 +6,8 @@ A simple hot seat implementation of a 2 player chess game.
 
 ## Backlog
 
+*The items listed here are in the order of decreasing priority.*
+
    1. Implement a grid:
       - Demo: Print the contents of the grid to the console.
       - Note: 2D array to console.
