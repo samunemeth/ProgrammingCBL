@@ -3,9 +3,11 @@
 ## Synopsis
 
 A simple hot seat implementation of a 2 player chess game.
-Below is a sketch of the imagined GUI design.
 
-<img src="./design-ideas/gui.png" width="80%"/>
+<p align="center">
+  <img src="./design-ideas/gui.png" width="80%"/><br/>
+  <i>GUI Design Sketch</i>
+</p>
 
 ## Backlog
 
