@@ -13,7 +13,7 @@ A simple hot seat implementation of a 2 player chess game.
 
 *The items listed here are in the order of decreasing priority.*
 
-  - [ ] Create a repository and folder structure. *(Learning Topic)*
+  - [x] Create a repository and folder structure. *(Learning Topic)*
     - Demo: The code is nicely accessible and history is kept.
   - [ ] Create class structure. *(Learning Topic)*
     - Note: Clean structure with inheritance and abstract classes.
