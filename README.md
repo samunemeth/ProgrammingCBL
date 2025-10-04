@@ -13,10 +13,6 @@ A simple hot seat implementation of a 2 player chess game.
 
 *The items listed here are in the order of decreasing priority.*
 
-  - [x] Create a repository and folder structure. *(Learning Topic)*
-    - Demo: The code is nicely accessible and history is kept.
-  - [ ] Create class structure. *(Learning Topic)*
-    - Note: Clean structure with inheritance and abstract classes.
   - [ ] Implement a grid:
     - Demo: Print the contents of the grid to the console.
     - Note: 2D array to console.
@@ -44,7 +40,7 @@ A simple hot seat implementation of a 2 player chess game.
     - Demo: Do multiples moves from the terminal, and see if they are kept
       in an array correctly.
     - Note: Just display the list of moves after every move in the terminal.
-  - [ ] Moving with clicking. *(Learning Topic)*
+  - [ ] Moving with clicking.
     - Demo: Click the piece that you want to move, then click on the square
       that you want it to move to.
     - Note: Also make the clicked cells highlighted.
