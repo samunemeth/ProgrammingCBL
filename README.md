@@ -13,8 +13,8 @@ A simple hot seat implementation of a 2 player chess game.
 
 *The items listed here are in the order of decreasing priority.*
 
-  - [ ] Creating class structure:
-    - Note: Simple classes that accommodate our use case well. *(Learning Topic)*
+  - [ ] Creating class structure: *(Learning Topic)* 
+    - Note: Simple classes that accommodate our use case well.
   - [ ] Implement a grid:
     - Demo: Print the contents of the grid to the console.
     - Note: 2D array to console.
