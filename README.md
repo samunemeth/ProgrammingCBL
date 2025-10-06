@@ -76,8 +76,10 @@ A simple hot seat implementation of a 2 player chess game.
 
 ## Learning
 
+We want to learn to do the following things with this project:
+
   - Version control and project management with git.
-  - Creating and using class structures with inheritance and abstract classes.
+  - Adopting common design patterns concerning class structure.
   - Graphical user input handling.
 
 ## Resources
