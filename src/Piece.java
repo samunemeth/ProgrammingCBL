@@ -35,7 +35,7 @@ public abstract class Piece {
             e.printStackTrace();
         }
         if (image != null) {
-            graphics.drawImage(image, x * 100, y * 100, null);
+            graphics.drawImage(image, x * 100 + 10, y * 100 + 10, 80,80, null);
         } else {
             // System.out.println("No image.");
         }
