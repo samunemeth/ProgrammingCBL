@@ -129,8 +129,9 @@ public class ChessGame {
             Graphics2D graphics = (Graphics2D) g;
 
             // Draw grid.
-            graphics.setColor(Color.GREEN);
-            graphics.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            // graphics.setColor(Color.GREEN);
+            // graphics.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            grid.show(graphics);
 
         }
 

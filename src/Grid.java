@@ -1,3 +1,5 @@
+import java.awt.Graphics2D;
+
 public class Grid {
 
     public static final int WIDTH = 8;
@@ -59,6 +61,16 @@ public class Grid {
             }
             System.out.println();
         }
+    }
+    
+    public void show(Graphics2D graphics) {
+
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                cells[i][j].show(graphics);
+            }
+        }
+
     }
 
 }

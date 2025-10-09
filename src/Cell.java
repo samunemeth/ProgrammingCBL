@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Cell {
@@ -29,8 +30,13 @@ public class Cell {
     }
     
     public void show(Graphics2D graphics) {
+        
+        graphics.setColor((x + y) % 2 == 0 ? Color.RED : Color.GREEN);
+        graphics.fillRect(x * 100, y * 100, 100, 100);
 
-        piece.show(graphics, x, y);
+        if (piece != null) {
+            piece.show(graphics, x, y);
+        }
 
     }
     
