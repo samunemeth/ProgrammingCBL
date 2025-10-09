@@ -87,3 +87,4 @@ We want to learn to do the following things with this project:
   - [Creating a Game in Swing](https://peerdh.com/blogs/programming-insights/creating-a-game-loop-in-java-swing)
   - [Designing a Chess Game](https://www.geeksforgeeks.org/dsa/design-a-chess-game/)
   - [Drawing Images](https://reintech.io/blog/java-2d-graphics-drawing-shapes-text-images)
+  - [Chess Assets](https://www.figma.com/community/file/971870797656870866)
