@@ -31,7 +31,9 @@ public class Cell {
     
     public void show(Graphics2D graphics) {
         
-        graphics.setColor((x + y) % 2 == 0 ? Color.RED : Color.GREEN);
+        // 206 216 234
+        // 236 241 251
+        graphics.setColor((x + y) % 2 == 0 ? new Color(236, 241, 251) : new Color(206, 216, 234));
         graphics.fillRect(x * 100, y * 100, 100, 100);
 
         if (piece != null) {

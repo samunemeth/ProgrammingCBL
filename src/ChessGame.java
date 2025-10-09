@@ -87,7 +87,7 @@ public class ChessGame {
         public Canvas() {
 
             // Set a border for the panel.
-            setBorder(BorderFactory.createLineBorder(Color.RED));
+            // setBorder(BorderFactory.createLineBorder(Color.RED));
 
         }
 
