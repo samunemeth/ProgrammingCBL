@@ -12,8 +12,10 @@ public class Queen extends Piece {
 
     public String getAssetPath() {
         switch (color) {
+            // Returns the white piece asset path
             case WHITE:
                 return "assets/white/queen.png";
+            // Returns the black piece asset path
             case BLACK:
                 return "assets/black/queen.png";
             default:

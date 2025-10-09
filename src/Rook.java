@@ -12,8 +12,10 @@ public class Rook extends Piece {
 
     public String getAssetPath() {
         switch (color) {
+            // Returns the white piece asset path
             case WHITE:
                 return "assets/white/rook.png";
+            // Returns the black piece asset path
             case BLACK:
                 return "assets/black/rook.png";
             default:

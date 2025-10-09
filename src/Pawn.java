@@ -1,7 +1,8 @@
 public class Pawn extends Piece {
-    
+
+    // Chess Notation
     private final char label = 'P';
-    
+
     public char getLabel() {
         return label;
     }
@@ -12,8 +13,10 @@ public class Pawn extends Piece {
 
     public String getAssetPath() {
         switch (color) {
+            // Returns the white piece asset path
             case WHITE:
                 return "assets/white/pawn.png";
+            // Returns the black piece asset path
             case BLACK:
                 return "assets/black/pawn.png";
             default:
