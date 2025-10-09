@@ -14,10 +14,10 @@ public class Bishop extends Piece {
         switch (color) {
             // Returns the white piece asset path
             case WHITE:
-                return "assets/white/bishop.png";
+                return "assets/white/bishop80.png";
             // Returns the black piece asset path
             case BLACK:
-                return "assets/black/bishop.png";
+                return "assets/black/bishop80.png";
             default:
                 return "";
         }

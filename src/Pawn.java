@@ -15,10 +15,10 @@ public class Pawn extends Piece {
         switch (color) {
             // Returns the white piece asset path
             case WHITE:
-                return "assets/white/pawn.png";
+                return "assets/white/pawn80.png";
             // Returns the black piece asset path
             case BLACK:
-                return "assets/black/pawn.png";
+                return "assets/black/pawn80.png";
             default:
                 return "";
         }

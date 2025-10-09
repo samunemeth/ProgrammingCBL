@@ -14,10 +14,10 @@ public class Queen extends Piece {
         switch (color) {
             // Returns the white piece asset path
             case WHITE:
-                return "assets/white/queen.png";
+                return "assets/white/queen80.png";
             // Returns the black piece asset path
             case BLACK:
-                return "assets/black/queen.png";
+                return "assets/black/queen80.png";
             default:
                 return "";
         }

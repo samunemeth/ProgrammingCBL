@@ -14,10 +14,10 @@ public class Knight extends Piece {
         switch (color) {
             // Returns the white piece asset path
             case WHITE:
-                return "assets/white/knight.png";
+                return "assets/white/knight80.png";
             // Returns the black piece asset path
             case BLACK:
-                return "assets/black/knight.png";
+                return "assets/black/knight80.png";
             default:
                 return "";
         }
