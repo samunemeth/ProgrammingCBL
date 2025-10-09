@@ -1,3 +1,5 @@
+import java.awt.Graphics2D;
+
 public class Cell {
     
     // Variables for storing the x and y position of the cell.
@@ -18,13 +20,17 @@ public class Cell {
         return piece != null;
     }
 
-
-
     public Cell(int x, int y) {
 
         // Store to instance variables.
         this.x = x;
         this.y = y;
+
+    }
+    
+    public void show(Graphics2D graphics) {
+
+        piece.show(graphics, x, y);
 
     }
     

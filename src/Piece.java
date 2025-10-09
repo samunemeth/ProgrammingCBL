@@ -20,7 +20,7 @@ public abstract class Piece {
     /**
      * Show the piece image.
      */
-    public void show(Graphics2D graphics, int xPos, int yPos) {
+    public void show(Graphics2D graphics, int x, int y) {
 
     }
     

@@ -20,6 +20,10 @@ public class ChessGame {
     // The size of the canvas inside the window in units of pixels.
     private static final int CANVAS_WIDTH = 800;
     private static final int CANVAS_HEIGHT = 800;
+
+    // The size of the cells inside the window in units of pixels.
+    private static final int CELL_WIDTH = 100;
+    private static final int CELL_HEIGHT = 100;
     
     // The chess grid of the game.
     private Grid grid;
