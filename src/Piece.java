@@ -1,3 +1,5 @@
+import java.awt.Graphics2D;
+
 public abstract class Piece {
         
     public enum PieceColor {
@@ -13,6 +15,14 @@ public abstract class Piece {
 
     // public abstract Cell[] getPossibleMoves();
     public abstract char getLabel();
+    public abstract String getAssetPath();
+    
+    /**
+     * Show the piece image.
+     */
+    public void show(Graphics2D graphics, int xPos, int yPos) {
+
+    }
     
     public Piece(PieceColor color) {
         this.color = color;
