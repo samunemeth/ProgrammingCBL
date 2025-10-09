@@ -1,4 +1,6 @@
 import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 
 public abstract class Piece {
         
@@ -21,7 +23,8 @@ public abstract class Piece {
      * Show the piece image.
      */
     public void show(Graphics2D graphics, int x, int y) {
-
+        ImageIcon image = new ImageIcon(getAssetPath());
+        graphics.drawImage(image.getImage(), x*100, y*100, null);
     }
     
     public Piece(PieceColor color) {

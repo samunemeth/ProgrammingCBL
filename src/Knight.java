@@ -10,6 +10,17 @@ public class Knight extends Piece {
         super(color);
     }
 
+    public String getAssetPath() {
+        switch (color) {
+            case WHITE:
+                return "assets/white/knight.png";
+            case BLACK:
+                return "assets/black/knight.png";
+            default:
+                return "";
+        }
+    }
+
     // public Cell[] getPossibleMoves() {
 
     // }
