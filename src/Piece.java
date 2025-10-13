@@ -1,53 +1,75 @@
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 
+/**
+ * A generic chess piece or pawn of any color or type.
+ */
 public abstract class Piece {
-    
+
+    // The loaded image of the pieces asset.
     protected Image image;
 
-    // Possible options for piece colour
+    /**
+     * A color of a piece. Can be black of white.
+     */
     public enum PieceColor {
         BLACK,
         WHITE
     }
-    
+
+    // The color of the piece.
     public PieceColor color;
 
-    // Gets colour of the piece
+    /*
+     * Abstract Methods
+     */
+
+    // Returns the label of the piece that is used when printing to the console.
+    public abstract char getLabel();
+
+    // Returns the path to the asset that must be used for this piece.
+    public abstract String getAssetPath();
+
+    /*
+     * Getters and Setters
+     */
+
     public PieceColor getColor() {
         return color;
     }
 
-    // public abstract Cell[] getPossibleMoves();
-
-    public abstract char getLabel(); // Gets the piece notation
-    public abstract String getAssetPath(); // Gets the piece's asset path to render image
-
     /**
-     * Displays the piece
-     * @param graphics Graphics object of the canvas
-     * @param x xPosition of the cell on the grid
-     * @param y yPosition of the cell on the grid
+     * Displays the piece over the grid. Uses pre-sized assets.
+     * 
+     * @param graphics Graphics object to render to.
+     * @param x        The parent cell's x position.
+     * @param y        The parent cell's y position.
      */
-    public void show(Graphics2D graphics, int x, int y) {
-        if (image != null) {
-            // TODO Don't hardcode the cell position values
-            graphics.drawImage(image, x * 100 + 10, y * 100 + 10, 80,80, null);
-        }
+    public void show(Graphics2D graphics, int x, int y, int sideLength) {
+
+        // Draw the appropriate image at the location determined by the black magic.
+        graphics.drawImage(image,
+                x * sideLength + sideLength / 10,
+                y * sideLength + sideLength / 10,
+                sideLength - sideLength / 5,
+                sideLength - sideLength / 5,
+                null);
     }
+
     /**
-     * Gets piece colour and tries get the asset path for the pieces
-     * @param color
+     * Gets piece colour and loads the asset for the piece.
+     * 
+     * @param color The color of the piece.
      */
     public Piece(PieceColor color) {
+        
+        // Save the piece color.
         this.color = color;
 
-        // Reads the file path
+        // Get he path to the asset and load the file.
         try {
             image = ImageIO.read(new File(getAssetPath()));
         } catch (IOException e) {

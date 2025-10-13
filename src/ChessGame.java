@@ -29,12 +29,7 @@ import java.awt.event.KeyEvent;
 public class ChessGame {
 
     // The size of the canvas inside the window in units of pixels.
-    private static final int CANVAS_WIDTH = 800;
-    private static final int CANVAS_HEIGHT = 800;
-
-    // The size of the cells inside the window in units of pixels.
-    private static final int CELL_WIDTH = 100;
-    private static final int CELL_HEIGHT = 100;
+    private static final int CANVAS_SIZE = 800;
     
     // The chess grid of the game.
     private Grid grid;
@@ -62,7 +57,7 @@ public class ChessGame {
      */
     private void resetGameState() {
 
-        grid = new Grid();
+        grid = new Grid(CANVAS_SIZE);
         grid.printToConsole();
 
     }
@@ -167,17 +162,17 @@ public class ChessGame {
 
         @Override
         public Dimension getMinimumSize() {
-            return new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
+            return new Dimension(CANVAS_SIZE, CANVAS_SIZE);
         }
 
         @Override
         public Dimension getMaximumSize() {
-            return new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
+            return new Dimension(CANVAS_SIZE, CANVAS_SIZE);
         }
 
         @Override
         public Dimension getPreferredSize() {
-            return new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT);
+            return new Dimension(CANVAS_SIZE, CANVAS_SIZE);
         }
 
         /*

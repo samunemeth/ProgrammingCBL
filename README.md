@@ -88,3 +88,4 @@ We want to learn to do the following things with this project:
   - [Designing a Chess Game](https://www.geeksforgeeks.org/dsa/design-a-chess-game/)
   - [Drawing Images](https://reintech.io/blog/java-2d-graphics-drawing-shapes-text-images)
   - [Chess Assets](https://www.figma.com/community/file/971870797656870866)
+  - [Box Layout](https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html)

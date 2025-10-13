@@ -18,9 +18,8 @@ public class Cell {
     private boolean isLight;
     private boolean highlight;
 
-    // The size of the cells inside the window in units of pixels.
-    private static final int CELL_WIDTH = 100;
-    private static final int CELL_HEIGHT = 100;
+    // The side length of one cell in pixes.
+    private int sideLength;
 
     /**
      * A cell on the chess grid.
@@ -28,11 +27,14 @@ public class Cell {
      * @param x The x position of the cell on the grid from 0 to 7.
      * @param y The y position of the cell on the grid from 0 to 7.
      */
-    public Cell(int x, int y) {
+    public Cell(int x, int y, int sideLength) {
 
         // Store to instance variables.
         this.x = x;
         this.y = y;
+        
+        // Store the side length.
+        this.sideLength = sideLength;
 
         // Determine the cell color based on the position.
         this.isLight = (x + y) % 2 == 0;
@@ -81,26 +83,26 @@ public class Cell {
 
         // Fill the cell background with the color.
         graphics.setColor(bgColor);
-        graphics.fillRect(x * CELL_WIDTH, y * CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+        graphics.fillRect(x * sideLength, y * sideLength, sideLength, sideLength);
 
         // Show the piece if there is one.
         if (piece != null) {
-            piece.show(graphics, x, y);
+            piece.show(graphics, x, y, sideLength);
         }
 
         // Set the font type, size and color.
-        graphics.setFont(new Font("Default", Font.BOLD, CELL_WIDTH / 6));
+        graphics.setFont(new Font("Default", Font.BOLD, sideLength / 6));
         graphics.setColor(new Color(52, 54, 74));
 
         // Draw the labels on the bottom and the left side.
         // There is some black magic happening with calculating the positions.
         if (x == 0) {
-            graphics.drawString(Integer.toString(8 - y), x * CELL_WIDTH + CELL_WIDTH / 20,
-                    y * CELL_HEIGHT + CELL_HEIGHT / 5);
+            graphics.drawString(Integer.toString(8 - y), x * sideLength + sideLength / 20,
+                    y * sideLength + sideLength / 5);
         }
         if (y == 7) {
-            graphics.drawString(Character.toString('A' + x), (x + 1) * CELL_WIDTH - CELL_WIDTH / 5,
-                    (y + 1) * CELL_HEIGHT - CELL_HEIGHT / 20);
+            graphics.drawString(Character.toString('A' + x), (x + 1) * sideLength - sideLength / 5,
+                    (y + 1) * sideLength - sideLength / 20);
         }
 
     }
