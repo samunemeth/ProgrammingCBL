@@ -72,5 +72,18 @@ public class Grid {
         }
 
     }
+    
+    public void move(int fromX, int fromY, int toX, int toY) {
+
+        cells[toX][toY].setPiece(cells[fromX][fromY].getPiece());
+        cells[fromX][fromY].setPiece(null);
+
+    }
+    
+    public void setHighlight(int xPos, int yPos, boolean val) {
+
+        cells[xPos][yPos].setHighlight(val);
+
+    }
 
 }

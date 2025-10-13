@@ -4,6 +4,10 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -80,6 +84,7 @@ public class ChessGame {
 
         // Create a new game panel.
         canvas = new Canvas();
+        canvas.addMouseListener(new MouseHandler());
         frame.add(canvas);
 
         // Variables for button images
@@ -197,6 +202,51 @@ public class ChessGame {
 
         }
 
+    }
+    
+    class MouseHandler implements MouseListener {
+        
+        // Variables for moving pieces with clicks.
+        private boolean hasPreviousClick = false;
+        private int lastClickedX = 0;
+        private int lastClickedY = 0;
+        
+        /*
+         * Mouse Listeners
+         */
+        public void mousePressed(MouseEvent e) {}
+
+        public void mouseReleased(MouseEvent e) {}
+
+        public void mouseEntered(MouseEvent e) {}
+
+        public void mouseExited(MouseEvent e) {}
+
+        public void mouseClicked(MouseEvent e) {
+            
+            int xPos = e.getX() / 100;
+            int yPos = e.getY() / 100;
+            
+            if (hasPreviousClick) {
+
+                grid.move(lastClickedX, lastClickedY, xPos, yPos);
+                hasPreviousClick = false;
+                
+                grid.setHighlight(lastClickedX, lastClickedY, false);
+
+            } else {
+
+                hasPreviousClick = true;
+                lastClickedX = xPos;
+                lastClickedY = yPos;
+                
+                grid.setHighlight(xPos, yPos, true);
+
+            }
+
+            canvas.repaint();
+
+        }
     }
 
 }

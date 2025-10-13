@@ -10,6 +10,12 @@ public class Cell {
     
     private Piece piece;
     
+    private boolean highlight;
+
+    public void setHighlight(boolean highlight) {
+        this.highlight = highlight;
+    }
+
     public Piece getPiece() {
         return piece;
     }
@@ -27,6 +33,8 @@ public class Cell {
         // Store to instance variables.
         this.x = x;
         this.y = y;
+        
+        this.highlight = false;
 
     }
     
@@ -34,6 +42,11 @@ public class Cell {
         
         // Set the color based on the position of the cell on the board.
         graphics.setColor((x + y) % 2 == 0 ? new Color(236, 241, 251) : new Color(206, 216, 234));
+
+        // Set a different color if the cell is highlighted.
+        if (highlight) {
+            graphics.setColor((x + y) % 2 == 0 ? new Color(177, 167, 252) : new Color(153, 144, 236));
+        }
         
         // Fill the cell background with the color.
         graphics.fillRect(x * 100, y * 100, 100, 100);
