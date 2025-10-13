@@ -91,7 +91,7 @@ public class ChessGame {
         frame.add(enterButton);
         
         enterButton.setFocusable(false);
-        ImageIcon checkmarkIcon = new ImageIcon("assets\\buttons\\check.jpg");
+        ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
         image = checkmarkIcon.getImage();
         newImg = image.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
         checkmarkIcon = new ImageIcon(newImg);
@@ -116,7 +116,7 @@ public class ChessGame {
         frame.add(crossButton);
         
         crossButton.setFocusable(false);
-        ImageIcon crossIcon = new ImageIcon("assets\\buttons\\cross.jpg");
+        ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
         image = crossIcon.getImage();
         newImg = image.getScaledInstance(80,80, java.awt.Image.SCALE_SMOOTH);
         crossIcon = new ImageIcon(newImg);
