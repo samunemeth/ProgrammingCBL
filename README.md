@@ -13,36 +13,34 @@ A simple hot seat implementation of a 2 player chess game.
 
 *The items listed here are in the order of decreasing priority.*
 
-  - [ ] Creating class structure: *(Learning Topic)* 
+  - [x] Creating class structure: *(Learning Topic)* 
     - Note: Simple classes that accommodate our use case well.
-  - [ ] Implement a grid:
+  - [x] Implement a grid:
     - Demo: Print the contents of the grid to the console.
     - Note: 2D array to console.
-  - [ ] Pieces:
+  - [x] Pieces:
     - Demo: Print the contents of the grid to the console.
     - Note: The cells are objects, and will have variables storing the piece.
-  - [ ] Show the grid and the Pieces:
+  - [x] Show the grid and the Pieces:
     - Demo: Compare the pieces and grid displayed to the ones coded,
       and printed to the console.
     - Note: Display the background color of the grind and the pieces on top
       of that.
-  - [ ] Show the grid labels:
+  - [x] Show the grid labels:
     - Demo: Check if the grid labels are correctly displayed.
     - Note: On the side of the canvas.
-  - [ ] Assign start positions:
+  - [x] Assign start positions:
     - Demo: The user interface displays the pieces as a regular starting
       position in chess would have them.
     - Note: Make sure the king and queen are in the right spots.
-  - [ ] Move piece with from the terminal with positions, and update the piece
-        position.
-    - Demo: Enter a starting and ending location for any piece, and see if
-      the UI is going to update it.
-    - Note: Use the letter-number format usually used in chess.
+  - [x] ~~Move piece with from the terminal with positions, and update the piece
+        position.~~
+    - Note: Jumped to using clicking instead.
   - [ ] Record what move have been played.
     - Demo: Do multiples moves from the terminal, and see if they are kept
       in an array correctly.
     - Note: Just display the list of moves after every move in the terminal.
-  - [ ] Moving with clicking. *(Learning Topic)*
+  - [x] Moving with clicking. *(Learning Topic)*
     - Demo: Click the piece that you want to move, then click on the square
       that you want it to move to.
     - Note: Also make the clicked cells highlighted.
