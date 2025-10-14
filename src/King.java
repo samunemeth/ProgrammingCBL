@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class King extends Piece {
     
     private final char label = 'K';
@@ -21,6 +23,10 @@ public class King extends Piece {
             default:
                 return "";
         }
+    }
+
+    public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+        return new ArrayList<Cell>();
     }
 
     // public Cell[] getPossibleMoves() {

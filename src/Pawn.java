@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Pawn extends Piece {
 
     // Chess Notation
@@ -22,6 +24,10 @@ public class Pawn extends Piece {
             default:
                 return "";
         }
+    }
+
+    public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+        return new ArrayList<Cell>();
     }
 
     // public Cell[] getPossibleMoves() {

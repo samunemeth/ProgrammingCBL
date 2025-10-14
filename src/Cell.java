@@ -9,7 +9,15 @@ public class Cell {
 
     // Variables for storing the x and y position of the cell.
     private int x;
+    public int getX() {
+        return x;
+    }
+
     private int y;
+
+    public int getY() {
+        return y;
+    }
 
     // Stores the piece that is on this cell.
     private Piece piece;

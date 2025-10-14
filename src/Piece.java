@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.util.ArrayList;
 
 /**
  * A generic chess piece or pawn of any color or type.
@@ -34,7 +35,7 @@ public abstract class Piece {
     public abstract String getAssetPath();
 
     // Returns an array of possible moves for this piece.
-    public abstract Cell[] getPossibleMoves(Grid grid, Cell parentCell);
+    public abstract ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell);
 
     /*
      * Getters and Setters

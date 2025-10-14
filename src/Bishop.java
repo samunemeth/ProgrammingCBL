@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Bishop extends Piece {
     
     private final char label = 'B';
@@ -21,6 +23,10 @@ public class Bishop extends Piece {
             default:
                 return "";
         }
+    }
+
+    public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+        return new ArrayList<Cell>();
     }
 
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Rook extends Piece {
 
     private final char label = 'R';
@@ -21,6 +23,29 @@ public class Rook extends Piece {
             default:
                 return "";
         }
+    }
+
+    public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+        ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
+
+        int parentXpos = parentCell.getX();
+        int parentYpos = parentCell.getY();
+
+        
+        // Up Direction
+        for (int i = parentXpos; i < Grid.SIZE; i++) {
+            Cell checkCell = grid.getCell(parentXpos, i);
+            if (checkCell.getPiece() == null) {
+                possibleMoves.add(checkCell);
+            } else if (checkCell.getPiece().getColor() != color) {
+                possibleMoves.add(checkCell);
+                break;
+            } else {
+                break;
+            }
+        }
+
+        return possibleMoves;
     }
     
 
