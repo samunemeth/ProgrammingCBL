@@ -67,7 +67,7 @@ A simple hot seat implementation of a 2 player chess game.
     - Note: Check what kind of cell the piece is moving to.
   
 > [!NOTE]
-> If we have time, we may also implement special moves
+> If we have time, we may also implement special xxmoves
 > or we may do checking of checks and checkmate.
 > 
 > We will not implement any kind of chess solving algorithm.
