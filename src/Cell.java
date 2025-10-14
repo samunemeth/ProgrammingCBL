@@ -89,10 +89,8 @@ public class Cell {
         // Selected by looking at cell color and highlighter status.
         Color bgColor;
 
-        if (highlight) {
+        if (highlight || (mark && hasPiece())) {
             bgColor = isLight ? new Color(177, 167, 252) : new Color(153, 144, 236);
-        } else if (mark) {
-            bgColor = new Color(255, 0, 0);
         } else {
             bgColor = isLight ? new Color(236, 241, 251) : new Color(206, 216, 234);
         }
@@ -102,8 +100,15 @@ public class Cell {
         graphics.fillRect(x * sideLength, y * sideLength, sideLength, sideLength);
 
         // Show the piece if there is one.
-        if (piece != null) {
+        if (hasPiece()) {
             piece.show(graphics, x, y, sideLength);
+        }
+        
+        // Draw a mark if there is one.
+        if (mark && (!hasPiece())) {
+            graphics.setColor(isLight ? new Color(177, 167, 252) : new Color(153, 144, 236));
+            graphics.fillOval(x * sideLength + sideLength / 3, y * sideLength + sideLength / 3, sideLength / 3, sideLength / 3);
+
         }
 
         // Set the font type, size and color.
