@@ -117,7 +117,19 @@ public class Grid {
      */
     public void move(int fromX, int fromY, int toX, int toY) {
 
-        cells[toX][toY].setPiece(cells[fromX][fromY].getPiece());
+        Piece pieceToMove = cells[fromX][fromY].getPiece();
+
+        // Promotion of pawn to queen.
+        if (pieceToMove instanceof Pawn) {
+            if (pieceToMove.getColor() == Piece.PieceColor.BLACK && toY == 7) {
+                pieceToMove = new Queen(Piece.PieceColor.BLACK);
+            }
+            if (pieceToMove.getColor() == Piece.PieceColor.WHITE && toY == 0) {
+                pieceToMove = new Queen(Piece.PieceColor.WHITE);
+            }
+        }
+
+        cells[toX][toY].setPiece(pieceToMove);
         cells[fromX][fromY].setPiece(null);
 
     }
