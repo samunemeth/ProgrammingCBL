@@ -34,6 +34,8 @@ public class ChessGame {
     // A modified JFrame acting as the canvas for the game.
     private Canvas canvas;
 
+    ArrayList<Cell> possibleCells;
+
     /**
      * Create a new Chess Game.
      * 
@@ -234,8 +236,23 @@ public class ChessGame {
             // we have to save the values for the next click.
             if (hasPreviousClick) {
                 
+                
                 // Check if the click is on a different square.
                 if (lastClickedX == xPos && lastClickedY == yPos) {
+                    
+                    // If the same cell is clicked, clear the selection.
+                    hasPreviousClick = false;
+                    possibleCells.clear();
+                    grid.clearHighlightAndMark();
+                
+                    // Repaint the canvas.
+                    canvas.repaint();
+
+                    return;
+                }
+                
+                // Only allow moves that are valid.
+                if (!possibleCells.contains(grid.getCell(xPos, yPos))) {
                     return;
                 }
 
@@ -249,6 +266,9 @@ public class ChessGame {
 
                 // Clear previous click tracker.
                 hasPreviousClick = false;
+                
+                // Clear possible moves.
+                possibleCells.clear();
 
                 // Remove the highlighting from the origin cell.
                 grid.clearHighlightAndMark();
@@ -261,16 +281,15 @@ public class ChessGame {
                     return;
                 }
                 
-                // Mark all the cells that a move can be made to.
-                ArrayList<Cell> possibleCells =
-                    clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
+                // Save the possible moves.
+                possibleCells = clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
 
+                // Mark all the cells that a move can be made to.
                 for (Cell cell : possibleCells) {
                     cell.setMark(true);
                 }
 
-
-                // Set the flag for a previous click.
+                // Sete the flag for a previous click.
                 hasPreviousClick = true;
 
                 // Save the click location.
