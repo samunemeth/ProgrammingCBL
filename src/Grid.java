@@ -118,6 +118,10 @@ public class Grid {
 
     }
 
+    public Cell getCell(int xPos, int yPos) {
+        return cells[xPos][yPos];
+    }
+
     /**
      * Sets the highlighted value of a cell.
      * 

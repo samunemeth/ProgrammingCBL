@@ -33,6 +33,9 @@ public abstract class Piece {
     // Returns the path to the asset that must be used for this piece.
     public abstract String getAssetPath();
 
+    // Returns an array of possible moves for this piece.
+    public abstract Cell[] getPossibleMoves(Grid grid, Cell parentCell);
+
     /*
      * Getters and Setters
      */
