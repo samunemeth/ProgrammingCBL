@@ -9,15 +9,7 @@ public class Cell {
 
     // Variables for storing the x and y position of the cell.
     private int x;
-    public int getX() {
-        return x;
-    }
-
     private int y;
-
-    public int getY() {
-        return y;
-    }
 
     // Stores the piece that is on this cell.
     private Piece piece;
@@ -26,10 +18,6 @@ public class Cell {
     private boolean isLight;
     private boolean highlight;
     private boolean mark;
-
-    public void setMark(boolean mark) {
-        this.mark = mark;
-    }
 
     // The side length of one cell in pixes.
     private int sideLength;
@@ -45,7 +33,7 @@ public class Cell {
         // Store to instance variables.
         this.x = x;
         this.y = y;
-        
+
         // Store the side length.
         this.sideLength = sideLength;
 
@@ -66,6 +54,10 @@ public class Cell {
         this.highlight = highlight;
     }
 
+    public void setMark(boolean mark) {
+        this.mark = mark;
+    }
+
     public Piece getPiece() {
         return piece;
     }
@@ -76,6 +68,14 @@ public class Cell {
 
     public boolean hasPiece() {
         return piece != null;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     /**
@@ -103,11 +103,14 @@ public class Cell {
         if (hasPiece()) {
             piece.show(graphics, x, y, sideLength);
         }
-        
+
         // Draw a mark if there is one.
         if (mark && (!hasPiece())) {
             graphics.setColor(isLight ? new Color(177, 167, 252) : new Color(153, 144, 236));
-            graphics.fillOval(x * sideLength + sideLength / 3, y * sideLength + sideLength / 3, sideLength / 3, sideLength / 3);
+            graphics.fillOval(x * sideLength + sideLength / 3,
+                    y * sideLength + sideLength / 3,
+                    sideLength / 3,
+                    sideLength / 3);
 
         }
 

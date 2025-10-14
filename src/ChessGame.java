@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,7 +33,8 @@ public class ChessGame {
     // A modified JFrame acting as the canvas for the game.
     private Canvas canvas;
 
-    ArrayList<Cell> possibleCells;
+    ArrayList<Cell> possibleMoves;
+    ArrayList<String> moveHistory;
 
     /**
      * Create a new Chess Game.
@@ -235,57 +235,51 @@ public class ChessGame {
             // the old location to this one. If there was no click before this,
             // we have to save the values for the next click.
             if (hasPreviousClick) {
-                
-                
+
                 // Check if the click is on a different square.
                 if (lastClickedX == xPos && lastClickedY == yPos) {
-                    
+
                     // If the same cell is clicked, clear the selection.
                     hasPreviousClick = false;
-                    possibleCells.clear();
+                    possibleMoves.clear();
                     grid.clearHighlightAndMark();
-                
+
                     // Repaint the canvas.
                     canvas.repaint();
 
                     return;
                 }
-                
+
                 // Only allow moves that are valid.
-                if (!possibleCells.contains(grid.getCell(xPos, yPos))) {
+                if (!possibleMoves.contains(grid.getCell(xPos, yPos))) {
                     return;
                 }
 
                 // Move the piece.
                 grid.move(lastClickedX, lastClickedY, xPos, yPos);
-                
-                // Print the move to the console.
-                System.out.print(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY));
-                System.out.print(":");
-                System.out.println(Grid.coordinatesToChessNotation(xPos, yPos));
 
-                // Clear previous click tracker.
+                // Add the move to the move history.
+                moveHistory.add(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY) + ":"
+                        + Grid.coordinatesToChessNotation(xPos, yPos));
+
+                // Clear previous click tracker, previous moves and highlights.
                 hasPreviousClick = false;
-                
-                // Clear possible moves.
-                possibleCells.clear();
-
-                // Remove the highlighting from the origin cell.
+                possibleMoves.clear();
                 grid.clearHighlightAndMark();
 
             } else {
-                
+
                 // Check if there is a piece at the location.
                 Cell clickedCell = grid.getCell(xPos, yPos);
                 if (!clickedCell.hasPiece()) {
                     return;
                 }
-                
+
                 // Save the possible moves.
-                possibleCells = clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
+                possibleMoves = clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
 
                 // Mark all the cells that a move can be made to.
-                for (Cell cell : possibleCells) {
+                for (Cell cell : possibleMoves) {
                     cell.setMark(true);
                 }
 

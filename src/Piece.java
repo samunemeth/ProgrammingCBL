@@ -3,9 +3,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-import java.util.ArrayList;
 
 /**
  * A generic chess piece or pawn of any color or type.
@@ -71,7 +69,7 @@ public abstract class Piece {
      * @param color The color of the piece.
      */
     public Piece(PieceColor color) {
-        
+
         // Save the piece color.
         this.color = color;
 

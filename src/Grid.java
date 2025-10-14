@@ -63,7 +63,23 @@ public class Grid {
         }
 
     }
-    
+
+    /*
+     * Setters and Getters
+     */
+
+    public Cell getCell(int xPos, int yPos) {
+        return cells[xPos][yPos];
+    }
+
+    /**
+     * Convert grid coordinates to chess notation.
+     * 
+     * @param xPos The x coordinate.
+     * @param yPos The y coordinate.
+     * @return The rank as a number from 1, increasing from the bottom up, and
+     *         the file as a letter from 'A' increasing from the left concatenated.
+     */
     public static String coordinatesToChessNotation(int xPos, int yPos) {
         return Character.toString('A' + xPos) + Integer.toString(8 - yPos);
     }
@@ -134,20 +150,11 @@ public class Grid {
 
     }
 
-    public Cell getCell(int xPos, int yPos) {
-        return cells[xPos][yPos];
-    }
-
     /**
-     * Sets the highlighted value of a cell.
-     * 
-     * @param xPos The x position of the cell.
-     * @param yPos The y position of the cell.
-     * @param val  The value to set highlighter to.
+     * Clear all the highlights and marks from the grid.
      */
     public void clearHighlightAndMark() {
 
-        // Fill the grid of cells with new cells.
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 cells[i][j].setHighlight(false);
