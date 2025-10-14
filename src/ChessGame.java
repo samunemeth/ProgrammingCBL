@@ -33,8 +33,8 @@ public class ChessGame {
     // A modified JFrame acting as the canvas for the game.
     private Canvas canvas;
 
-    ArrayList<Cell> possibleMoves;
-    ArrayList<String> moveHistory;
+    ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
+    ArrayList<String> moveHistory = new ArrayList<String>();
 
     /**
      * Create a new Chess Game.
