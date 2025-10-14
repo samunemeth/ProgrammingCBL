@@ -85,29 +85,6 @@ public class Grid {
     }
 
     /**
-     * Prints the grid to the console. Useful for debugging.
-     * White pieces are capital letters while black pieces are lower case.
-     * Empty squares are represented by dots.
-     * (The method is a bit messy, but not used in production.)
-     */
-    public void printToConsole() {
-        for (int j = 0; j < SIZE; j++) {
-            for (int i = 0; i < SIZE; i++) {
-                if (cells[i][j].hasPiece()) {
-                    if (cells[i][j].getPiece().getColor() == Piece.PieceColor.WHITE) {
-                        System.out.print(Character.toUpperCase(cells[i][j].getPiece().getLabel()));
-                    } else {
-                        System.out.print(Character.toLowerCase(cells[i][j].getPiece().getLabel()));
-                    }
-                } else {
-                    System.out.print(".");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    /**
      * Renders the grid by rendering each individual cell.
      * 
      * @param graphics The graphics object to render to.

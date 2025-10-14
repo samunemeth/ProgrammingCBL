@@ -28,9 +28,6 @@ public abstract class Piece {
      * Abstract Methods
      */
 
-    // Returns the label of the piece that is used when printing to the console.
-    public abstract char getLabel();
-
     // Returns the path to the asset that must be used for this piece.
     public abstract String getAssetPath();
 

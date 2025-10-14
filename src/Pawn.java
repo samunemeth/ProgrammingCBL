@@ -2,13 +2,6 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
 
-    // Chess Notation
-    private final char label = 'P';
-
-    public char getLabel() {
-        return label;
-    }
-
     public Pawn(PieceColor color) {
         super(color);
     }
