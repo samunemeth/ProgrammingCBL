@@ -1,24 +1,24 @@
 import java.util.ArrayList;
 
+/**
+ * Pawn piece type.
+ */
 public class Pawn extends Piece {
 
     public Pawn(PieceColor color) {
         super(color);
     }
 
-    public String getAssetPath() {
-        switch (color) {
-            // Returns the white piece asset path
-            case WHITE:
-                return "assets/white/pawn80.png";
-            // Returns the black piece asset path
-            case BLACK:
-                return "assets/black/pawn80.png";
-            default:
-                return "";
-        }
+    /**
+     * Get the name of the asset file.
+     */
+    public String getAssetName() {
+        return "pawn";
     }
 
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
 
         ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
@@ -58,9 +58,5 @@ public class Pawn extends Piece {
 
         return possibleMoves;
     }
-
-    // public Cell[] getPossibleMoves() {
-
-    // }
 
 }

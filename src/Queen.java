@@ -1,25 +1,26 @@
 import java.util.ArrayList;
 
+/**
+ * Queen piece type.
+ */
 public class Queen extends Piece {
 
     public Queen(PieceColor color) {
         super(color);
     }
 
-    public String getAssetPath() {
-        switch (color) {
-            // Returns the white piece asset path
-            case WHITE:
-                return "assets/white/queen80.png";
-            // Returns the black piece asset path
-            case BLACK:
-                return "assets/black/queen80.png";
-            default:
-                return "";
-        }
+    /**
+     * Get the name of the asset file.
+     */
+    public String getAssetName() {
+        return "queen";
     }
 
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+
         ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
 
         int parentXpos = parentCell.getX();
@@ -131,9 +132,5 @@ public class Queen extends Piece {
 
         return possibleMoves;
     }
-
-    // public Cell[] getPossibleMoves() {
-
-    // }
 
 }

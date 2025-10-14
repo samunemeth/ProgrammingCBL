@@ -24,14 +24,14 @@ public abstract class Piece {
     // The color of the piece.
     public PieceColor color;
 
-    /*
-     * Abstract Methods
+    /**
+     * Returns the path to the asset that must be used for this piece.
      */
+    public abstract String getAssetName();
 
-    // Returns the path to the asset that must be used for this piece.
-    public abstract String getAssetPath();
-
-    // Returns an array of possible moves for this piece.
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public abstract ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell);
 
     /*
@@ -70,9 +70,13 @@ public abstract class Piece {
         // Save the piece color.
         this.color = color;
 
+        String fullAssetPath = "assets/"
+                + (color == Piece.PieceColor.WHITE ? "white" : "black")
+                + "/" + getAssetName() + "80.png";
+
         // Get he path to the asset and load the file.
         try {
-            image = ImageIO.read(new File(getAssetPath()));
+            image = ImageIO.read(new File(fullAssetPath));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,25 +1,26 @@
 import java.util.ArrayList;
 
+/**
+ * Rook piece type.
+ */
 public class Rook extends Piece {
     
     public Rook(PieceColor color) {
         super(color);
     }
 
-    public String getAssetPath() {
-        switch (color) {
-            // Returns the white piece asset path
-            case WHITE:
-                return "assets/white/rook80.png";
-            // Returns the black piece asset path
-            case BLACK:
-                return "assets/black/rook80.png";
-            default:
-                return "";
-        }
+    /**
+     * Get the name of the asset file.
+     */
+    public String getAssetName() {
+        return "rook";
     }
 
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+
         ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
 
         int parentXpos = parentCell.getX();
@@ -80,10 +81,5 @@ public class Rook extends Piece {
 
         return possibleMoves;
     }
-    
-
-    // public Cell[] getPossibleMoves() {
-
-    // }
 
 }

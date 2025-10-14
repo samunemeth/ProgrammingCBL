@@ -1,25 +1,26 @@
 import java.util.ArrayList;
 
+/**
+ * Bishop piece type.
+ */
 public class Bishop extends Piece {
 
     public Bishop(PieceColor color) {
         super(color);
     }
 
-    public String getAssetPath() {
-        switch (color) {
-            // Returns the white piece asset path
-            case WHITE:
-                return "assets/white/bishop80.png";
-            // Returns the black piece asset path
-            case BLACK:
-                return "assets/black/bishop80.png";
-            default:
-                return "";
-        }
+    /**
+     * Get the name of the asset file.
+     */
+    public String getAssetName() {
+        return "bishop";
     }
 
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
+
         ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
 
         int parentXpos = parentCell.getX();
@@ -38,7 +39,7 @@ public class Bishop extends Piece {
             }
         }
 
-        // Down-Left Direction 
+        // Down-Left Direction
         for (int i = parentXpos - 1, j = parentYpos + 1; i >= 0 && j < Grid.SIZE; i--, j++) {
             Cell checkCell = grid.getCell(i, j);
             if (!checkCell.hasPiece()) {
@@ -79,10 +80,5 @@ public class Bishop extends Piece {
 
         return possibleMoves;
     }
-
-
-    // public Cell[] getPossibleMoves() {
-
-    // }
 
 }

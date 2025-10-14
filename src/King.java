@@ -1,29 +1,26 @@
 import java.util.ArrayList;
 
+/**
+ * King piece type.
+ */
 public class King extends Piece {
     
     public King(PieceColor color) {
         super(color);
     }
-
-    public String getAssetPath() {
-        switch (color) {
-            // Returns the white piece asset path
-            case WHITE:
-                return "assets/white/king80.png";
-            // Returns the black piece asset path
-            case BLACK:
-                return "assets/black/king80.png";
-            default:
-                return "";
-        }
+    
+    /**
+     * Get the name of the asset file.
+     */
+    public String getAssetName() {
+        return "king";
     }
 
+    /**
+     * Return the array of cells that are a valid destination for this piece.
+     */
     public ArrayList<Cell> getPossibleMoves(Grid grid, Cell parentCell) {
         return new ArrayList<Cell>();
     }
 
-    // public Cell[] getPossibleMoves() {
-       
-    // }
 }    
