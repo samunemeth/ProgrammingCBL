@@ -32,23 +32,31 @@ public class Rook extends Piece {
         int parentYpos = parentCell.getY();
 
         
-        // Up Direction
+        // Down Direction
         for (int i = parentYpos + 1; i < Grid.SIZE; i++) {
             Cell checkCell = grid.getCell(parentXpos, i);
             if (!checkCell.hasPiece()) {
                 possibleMoves.add(checkCell);
-            } else {
-                break;
-            }
-            /*  else if (checkCell.getPiece().getColor() != color) {
+            } else if (checkCell.getPiece().getColor() != color) {
                 possibleMoves.add(checkCell);
                 break;
             } else {
                 break;
-            } */
+            }
         }
 
-        // Down Direction 
+        // Up Direction 
+        for (int i = parentYpos - 1; i > 0; i--) {
+            Cell checkCell = grid.getCell(parentXpos, i);
+            if (!checkCell.hasPiece()) {
+                possibleMoves.add(checkCell);
+            } else if (checkCell.getPiece().getColor() != color) {
+                possibleMoves.add(checkCell);
+                break;
+            } else {
+                break;
+            }
+        }
 
 
         return possibleMoves;
