@@ -25,6 +25,11 @@ public class Cell {
     // Variables to keep track of some visuals.
     private boolean isLight;
     private boolean highlight;
+    private boolean mark;
+
+    public void setMark(boolean mark) {
+        this.mark = mark;
+    }
 
     // The side length of one cell in pixes.
     private int sideLength;
@@ -49,6 +54,7 @@ public class Cell {
 
         // By default the cell is not highlighted.
         this.highlight = false;
+        this.mark = false;
 
     }
 
@@ -85,6 +91,8 @@ public class Cell {
 
         if (highlight) {
             bgColor = isLight ? new Color(177, 167, 252) : new Color(153, 144, 236);
+        } else if (mark) {
+            bgColor = new Color(255, 0, 0);
         } else {
             bgColor = isLight ? new Color(236, 241, 251) : new Color(206, 216, 234);
         }

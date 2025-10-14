@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -231,6 +233,11 @@ public class ChessGame {
             // the old location to this one. If there was no click before this,
             // we have to save the values for the next click.
             if (hasPreviousClick) {
+                
+                // Check if the click is on a different square.
+                if (lastClickedX == xPos && lastClickedY == yPos) {
+                    return;
+                }
 
                 // Move the piece.
                 grid.move(lastClickedX, lastClickedY, xPos, yPos);
@@ -247,6 +254,21 @@ public class ChessGame {
                 grid.setHighlight(lastClickedX, lastClickedY, false);
 
             } else {
+                
+                // Check if there is a piece at the location.
+                Cell clickedCell = grid.getCell(xPos, yPos);
+                if (!clickedCell.hasPiece()) {
+                    return;
+                }
+                
+                // Mark all the cells that a move can be made to.
+                ArrayList<Cell> possibleCells =
+                    clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
+
+                for (Cell cell : possibleCells) {
+                    cell.setMark(true);
+                }
+
 
                 // Set the flag for a previous click.
                 hasPreviousClick = true;
