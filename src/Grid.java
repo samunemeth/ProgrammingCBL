@@ -63,6 +63,10 @@ public class Grid {
         }
 
     }
+    
+    public static String coordinatesToChessNotation(int xPos, int yPos) {
+        return Character.toString('A' + xPos) + Integer.toString(8 - yPos);
+    }
 
     /**
      * Prints the grid to the console. Useful for debugging.

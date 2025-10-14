@@ -234,6 +234,11 @@ public class ChessGame {
 
                 // Move the piece.
                 grid.move(lastClickedX, lastClickedY, xPos, yPos);
+                
+                // Print the move to the console.
+                System.out.print(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY));
+                System.out.print(":");
+                System.out.println(Grid.coordinatesToChessNotation(xPos, yPos));
 
                 // Clear previous click tracker.
                 hasPreviousClick = false;
