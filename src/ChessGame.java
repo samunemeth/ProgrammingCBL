@@ -251,7 +251,7 @@ public class ChessGame {
                 hasPreviousClick = false;
 
                 // Remove the highlighting from the origin cell.
-                grid.setHighlight(lastClickedX, lastClickedY, false);
+                grid.clearHighlightAndMark();
 
             } else {
                 
@@ -278,7 +278,7 @@ public class ChessGame {
                 lastClickedY = yPos;
 
                 // Add highlighting to the cell just clicked.
-                grid.setHighlight(xPos, yPos, true);
+                grid.getCell(xPos, yPos).setHighlight(true);
 
             }
 

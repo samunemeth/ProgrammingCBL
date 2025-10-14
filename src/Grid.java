@@ -133,9 +133,15 @@ public class Grid {
      * @param yPos The y position of the cell.
      * @param val  The value to set highlighter to.
      */
-    public void setHighlight(int xPos, int yPos, boolean val) {
+    public void clearHighlightAndMark() {
 
-        cells[xPos][yPos].setHighlight(val);
+        // Fill the grid of cells with new cells.
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                cells[i][j].setHighlight(false);
+                cells[i][j].setMark(false);
+            }
+        }
 
     }
 
