@@ -43,13 +43,13 @@ public class Pawn extends Piece {
             }
             if (parentXpos - 1 >= 0) {
                 toCell = grid.getCell(parentXpos - 1, parentYpos + moveDirection);
-                if (toCell.hasPiece()) {
+                if (toCell.hasPiece() && toCell.getPiece().getColor() != color) {
                     possibleMoves.add(toCell);
                 }
             }
             if (parentXpos + 1 < Grid.SIZE) {
                 toCell = grid.getCell(parentXpos + 1, parentYpos + moveDirection);
-                if (toCell.hasPiece()) {
+                if (toCell.hasPiece() && toCell.getPiece().getColor() != color) {
                     possibleMoves.add(toCell);
                 }
             }
