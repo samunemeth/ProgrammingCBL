@@ -36,7 +36,7 @@ A simple hot seat implementation of a 2 player chess game.
   - [x] ~~Move piece with from the terminal with positions, and update the piece
         position.~~
     - Note: Jumped to using clicking instead.
-  - [ ] Record what move have been played.
+  - [x] Record what move have been played.
     - Demo: Do multiples moves from the terminal, and see if they are kept
       in an array correctly.
     - Note: Just display the list of moves after every move in the terminal.
@@ -47,7 +47,7 @@ A simple hot seat implementation of a 2 player chess game.
   - [ ] Check who the next player is.
     - Demo: players can only play moves in an alternate fashion with white
       starting.
-  - [ ] Validate the move.
+  - [x] Validate the move.
     - Demo: Do not allow the piece to move if the move is incorrect.
     - Note: This requires that there is a function for each piece type that
       can determine if the piece can move there.
