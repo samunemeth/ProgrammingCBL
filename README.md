@@ -44,7 +44,7 @@ A simple hot seat implementation of a 2 player chess game.
     - Demo: Click the piece that you want to move, then click on the square
       that you want it to move to.
     - Note: Also make the clicked cells highlighted.
-  - [ ] Check who the next player is.
+  - [x] Check who the next player is.
     - Demo: players can only play moves in an alternate fashion with white
       starting.
   - [x] Validate the move.

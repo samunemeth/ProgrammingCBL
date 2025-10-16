@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
 
 /**
  * A Simple chess game implementation.
@@ -88,58 +89,97 @@ public class ChessGame {
         Image image;
         Image newImg;
 
-        // Validate Button
-        JButton enterButton = new JButton();
-        frame.add(enterButton);
+//        // Validate Button
+//        JButton enterButton = new JButton();
+//        frame.add(enterButton);
+//
+//        enterButton.setFocusable(false);
+//        ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
+//        image = checkmarkIcon.getImage();
+//        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
+//        checkmarkIcon = new ImageIcon(newImg);
+//
+//        enterButton.setIcon(checkmarkIcon);
+//        // @TODO: FIXHERE!
+//        enterButton.setMnemonic(
+//                javax.swing.KeyStroke.getKeyStroke("ENTER").getKeyCode());
+//        enterButton.setToolTipText("Validate Move (Enter)");
+//        enterButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent e) {
+//                System.out.println("Enter button pressed");
+//            }
+//        });
+//        enterButton.setPreferredSize(new Dimension(80, 80));
+//        enterButton.setBounds(200, 300, 80, 80);
+//
+//        // Dicard Button
+//        JButton crossButton = new JButton();
+//        frame.add(crossButton);
+//
+//        crossButton.setFocusable(false);
+//        ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
+//        image = crossIcon.getImage();
+//        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
+//        crossIcon = new ImageIcon(newImg);
+//
+//        crossButton.setIcon(crossIcon);
+//        // @TODO: FIXHERE!
+//        crossButton.setMnemonic(KeyEvent.VK_DELETE);
+//        crossButton.setToolTipText("Discard Move (Delete)");
+//        crossButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent e) {
+//                System.out.println("Detel button pressed");
+//            }
+//        });
+//        crossButton.setPreferredSize(new Dimension(80, 80));
+//        crossButton.setBounds(200, 300, 80, 80);
 
-        enterButton.setFocusable(false);
-        ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
-        image = checkmarkIcon.getImage();
-        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-        checkmarkIcon = new ImageIcon(newImg);
+        // Resignation Button
+        JButton resignButton = new JButton();
+        frame.add(resignButton);
+        resignButton.setToolTipText("Resign");
 
-        enterButton.setIcon(checkmarkIcon);
-        // @TODO: FIXHERE!
-        enterButton.setMnemonic(
-                javax.swing.KeyStroke.getKeyStroke("ENTER").getKeyCode());
-        enterButton.setToolTipText("Validate Move (Enter)");
-        enterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                System.out.println("Enter button pressed");
+        resignButton.setFocusable(false);
+        ImageIcon resignIcon = new ImageIcon("assets/buttons/resignation.png");
+        image = resignIcon.getImage();
+        newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        resignIcon = new ImageIcon(newImg);
+        resignButton.setIcon(resignIcon);
+
+        resignButton.setPreferredSize(new Dimension(50, 50));
+        resignButton.setBounds(200, 300, 60, 60);
+
+        resignButton.addActionListener(e -> {
+            int playerResigning = JOptionPane.showOptionDialog(
+                    frame, "Which player would like to resign?", "Player Confirmation",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
+                    Piece.PieceColor.values(), Piece.PieceColor.WHITE);
+
+            int response = JOptionPane.showConfirmDialog(frame,
+                    "Are you sure you want to resign?", "Confirm Resignation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                if (playerResigning == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(frame, "White Wins");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Black Wins");
+                }
+            } else if (response == JOptionPane.NO_OPTION) {
+                return;
             }
         });
-        enterButton.setPreferredSize(new Dimension(80, 80));
-        enterButton.setBounds(200, 300, 80, 80);
 
-        // Dicard Button
-        JButton crossButton = new JButton();
-        frame.add(crossButton);
-
-        crossButton.setFocusable(false);
-        ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
-        image = crossIcon.getImage();
-        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-        crossIcon = new ImageIcon(newImg);
-
-        crossButton.setIcon(crossIcon);
-        // @TODO: FIXHERE!
-        crossButton.setMnemonic(KeyEvent.VK_DELETE);
-        crossButton.setToolTipText("Discard Move (Delete)");
-        crossButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                System.out.println("Detel button pressed");
-            }
-        });
-        crossButton.setPreferredSize(new Dimension(80, 80));
-        crossButton.setBounds(200, 300, 80, 80);
 
         // Pack the elements and make the window visible.
         frame.pack();
         frame.setVisible(true);
 
     }
+
 
     /**
      * A canvas for the chess board based on a JPanel.
