@@ -142,7 +142,7 @@ public class ChessGame {
         resignButton.setToolTipText("Resign");
 
         resignButton.setFocusable(false);
-        ImageIcon resignIcon = new ImageIcon("assets/buttons/resignation.png");
+        ImageIcon resignIcon = new ImageIcon("assets/buttons/resignation.jpg");
         image = resignIcon.getImage();
         newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
         resignIcon = new ImageIcon(newImg);
