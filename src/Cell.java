@@ -18,6 +18,7 @@ public class Cell {
     private boolean isLight;
     private boolean highlight;
     private boolean mark;
+    private boolean cursor;
 
     // The side length of one cell in pixes.
     private int sideLength;
@@ -58,6 +59,10 @@ public class Cell {
         this.mark = mark;
     }
 
+    public void setCursor(boolean cursor) {
+        this.cursor = cursor;
+    }
+
     public Piece getPiece() {
         return piece;
     }
@@ -89,7 +94,9 @@ public class Cell {
         // Selected by looking at cell color and highlighter status.
         Color bgColor;
 
-        if (highlight || (mark && hasPiece())) {
+        if (cursor) {
+            bgColor = isLight ? new Color(255, 205, 112) : new Color(248, 190, 84);
+        } else if (highlight || (mark && hasPiece())) {
             bgColor = isLight ? new Color(177, 167, 252) : new Color(153, 144, 236);
         } else {
             bgColor = isLight ? new Color(236, 241, 251) : new Color(206, 216, 234);
