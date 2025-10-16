@@ -204,6 +204,7 @@ public class ChessGame {
         private boolean hasPreviousClick = false;
         private int lastClickedX = 0;
         private int lastClickedY = 0;
+        private Piece.PieceColor nextPlayerColor = Piece.PieceColor.WHITE;
 
         /*
          * Mouse Listeners
@@ -257,6 +258,8 @@ public class ChessGame {
 
                 // Move the piece.
                 grid.move(lastClickedX, lastClickedY, xPos, yPos);
+                nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE ?
+                        Piece.PieceColor.BLACK : Piece.PieceColor.WHITE;
 
                 // Add the move to the move history.
                 moveHistory.add(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY) + ":"
@@ -272,6 +275,10 @@ public class ChessGame {
                 // Check if there is a piece at the location.
                 Cell clickedCell = grid.getCell(xPos, yPos);
                 if (!clickedCell.hasPiece()) {
+                    return;
+                }
+
+                if (clickedCell.getPiece().getColor() != nextPlayerColor) {
                     return;
                 }
 
@@ -297,9 +304,8 @@ public class ChessGame {
 
             // Repaint the canvas. This is needed wither way, as cell highlighting
             // at the least changes every time.
-            canvas.repaint();
 
+            canvas.repaint();
         }
     }
-
 }
