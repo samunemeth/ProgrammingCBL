@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -89,52 +90,52 @@ public class ChessGame {
         Image image;
         Image newImg;
 
-//        // Validate Button
-//        JButton enterButton = new JButton();
-//        frame.add(enterButton);
-//
-//        enterButton.setFocusable(false);
-//        ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
-//        image = checkmarkIcon.getImage();
-//        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-//        checkmarkIcon = new ImageIcon(newImg);
-//
-//        enterButton.setIcon(checkmarkIcon);
-//        // @TODO: FIXHERE!
-//        enterButton.setMnemonic(
-//                javax.swing.KeyStroke.getKeyStroke("ENTER").getKeyCode());
-//        enterButton.setToolTipText("Validate Move (Enter)");
-//        enterButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                System.out.println("Enter button pressed");
-//            }
-//        });
-//        enterButton.setPreferredSize(new Dimension(80, 80));
-//        enterButton.setBounds(200, 300, 80, 80);
-//
-//        // Dicard Button
-//        JButton crossButton = new JButton();
-//        frame.add(crossButton);
-//
-//        crossButton.setFocusable(false);
-//        ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
-//        image = crossIcon.getImage();
-//        newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-//        crossIcon = new ImageIcon(newImg);
-//
-//        crossButton.setIcon(crossIcon);
-//        // @TODO: FIXHERE!
-//        crossButton.setMnemonic(KeyEvent.VK_DELETE);
-//        crossButton.setToolTipText("Discard Move (Delete)");
-//        crossButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(java.awt.event.ActionEvent e) {
-//                System.out.println("Detel button pressed");
-//            }
-//        });
-//        crossButton.setPreferredSize(new Dimension(80, 80));
-//        crossButton.setBounds(200, 300, 80, 80);
+        // // Validate Button
+        // JButton enterButton = new JButton();
+        // frame.add(enterButton);
+        //
+        // enterButton.setFocusable(false);
+        // ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
+        // image = checkmarkIcon.getImage();
+        // newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
+        // checkmarkIcon = new ImageIcon(newImg);
+        //
+        // enterButton.setIcon(checkmarkIcon);
+        // // @TODO: FIXHERE!
+        // enterButton.setMnemonic(
+        // javax.swing.KeyStroke.getKeyStroke("ENTER").getKeyCode());
+        // enterButton.setToolTipText("Validate Move (Enter)");
+        // enterButton.addActionListener(new ActionListener() {
+        // @Override
+        // public void actionPerformed(java.awt.event.ActionEvent e) {
+        // System.out.println("Enter button pressed");
+        // }
+        // });
+        // enterButton.setPreferredSize(new Dimension(80, 80));
+        // enterButton.setBounds(200, 300, 80, 80);
+        //
+        // // Dicard Button
+        // JButton crossButton = new JButton();
+        // frame.add(crossButton);
+        //
+        // crossButton.setFocusable(false);
+        // ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
+        // image = crossIcon.getImage();
+        // newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
+        // crossIcon = new ImageIcon(newImg);
+        //
+        // crossButton.setIcon(crossIcon);
+        // // @TODO: FIXHERE!
+        // crossButton.setMnemonic(KeyEvent.VK_DELETE);
+        // crossButton.setToolTipText("Discard Move (Delete)");
+        // crossButton.addActionListener(new ActionListener() {
+        // @Override
+        // public void actionPerformed(java.awt.event.ActionEvent e) {
+        // System.out.println("Detel button pressed");
+        // }
+        // });
+        // crossButton.setPreferredSize(new Dimension(80, 80));
+        // crossButton.setBounds(200, 300, 80, 80);
 
         // Resignation Button
         JButton resignButton = new JButton();
@@ -157,6 +158,10 @@ public class ChessGame {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
                     Piece.PieceColor.values(), Piece.PieceColor.WHITE);
 
+            if (playerResigning == JOptionPane.CLOSED_OPTION) {
+                return;
+            }
+
             int response = JOptionPane.showConfirmDialog(frame,
                     "Are you sure you want to resign?", "Confirm Resignation",
                     JOptionPane.YES_NO_OPTION,
@@ -164,22 +169,47 @@ public class ChessGame {
 
             if (response == JOptionPane.YES_OPTION) {
                 if (playerResigning == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(frame, "White Wins");
-                } else {
                     JOptionPane.showMessageDialog(frame, "Black Wins");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "White Wins");
                 }
-            } else if (response == JOptionPane.NO_OPTION) {
+            } else {
                 return;
             }
         });
 
+        // Draw Button
+        JButton drawButton = new JButton();
+        frame.add(drawButton);
+        drawButton.setToolTipText("Draw");
+
+        drawButton.setFocusable(false);
+        // @TODO Add the draw button image
+        ImageIcon drawIcon = new ImageIcon("assets/buttons/check.jpg");
+        image = drawIcon.getImage();
+        newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        drawIcon = new ImageIcon(newImg);
+        drawButton.setIcon(drawIcon);
+
+        drawButton.setPreferredSize(new Dimension(50, 50));
+        drawButton.setBounds(200, 300, 60, 60);
+
+        drawButton.addActionListener(e -> {
+            int response = JOptionPane.showConfirmDialog(frame,
+                    "Are you sure you want to draw?", "Confirm Draw",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(frame, "Game is a Drawn");
+            } 
+        });
 
         // Pack the elements and make the window visible.
         frame.pack();
         frame.setVisible(true);
 
     }
-
 
     /**
      * A canvas for the chess board based on a JPanel.
@@ -298,8 +328,8 @@ public class ChessGame {
 
                 // Move the piece.
                 grid.move(lastClickedX, lastClickedY, xPos, yPos);
-                nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE ?
-                        Piece.PieceColor.BLACK : Piece.PieceColor.WHITE;
+                nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE ? Piece.PieceColor.BLACK
+                        : Piece.PieceColor.WHITE;
 
                 // Add the move to the move history.
                 moveHistory.add(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY) + ":"

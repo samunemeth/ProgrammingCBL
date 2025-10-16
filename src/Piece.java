@@ -17,8 +17,8 @@ public abstract class Piece {
      * A color of a piece. Can be black of white.
      */
     public enum PieceColor {
-        BLACK,
-        WHITE
+        WHITE,
+        BLACK
     }
 
     // The color of the piece.
