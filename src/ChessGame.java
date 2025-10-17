@@ -185,7 +185,7 @@ public class ChessGame {
 
         drawButton.setFocusable(false);
         // @TODO Add the draw button image
-        ImageIcon drawIcon = new ImageIcon("assets/buttons/check.jpg");
+        ImageIcon drawIcon = new ImageIcon("assets/buttons/draw.png");
         image = drawIcon.getImage();
         newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
         drawIcon = new ImageIcon(newImg);
