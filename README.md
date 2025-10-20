@@ -87,3 +87,4 @@ We want to learn to do the following things with this project:
   - [Drawing Images](https://reintech.io/blog/java-2d-graphics-drawing-shapes-text-images)
   - [Chess Assets](https://www.figma.com/community/file/971870797656870866)
   - [Box Layout](https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html)
+  - [Our Color Pallette](https://coolors.co/b1a7fc-9990ec-ecf1fb-ced8ea-ffcd70-f8be54)

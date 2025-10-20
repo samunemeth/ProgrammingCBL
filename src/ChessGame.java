@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -37,6 +38,15 @@ public class ChessGame {
 
     ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
     ArrayList<String> moveHistory = new ArrayList<String>();
+
+    // Variables for moving pieces with clicks.
+    private boolean hasPreviousClick = false;
+    private int lastClickedX = 0;
+    private int lastClickedY = 0;
+    private Piece.PieceColor nextPlayerColor = Piece.PieceColor.WHITE;
+
+    int cursorCurrentX = 3;
+    int cursorCurrentY = 3;
 
     /**
      * Create a new Chess Game.
@@ -83,7 +93,10 @@ public class ChessGame {
 
         // Create a new game panel.
         canvas = new Canvas();
-        canvas.addMouseListener(new MouseHandler());
+        InputHandler inputHandler = new InputHandler();
+        canvas.addMouseListener(inputHandler);
+        canvas.addKeyListener(inputHandler);
+        canvas.setFocusable(true);
         frame.add(canvas);
 
         // Variables for button images
@@ -211,6 +224,85 @@ public class ChessGame {
 
     }
 
+    private void handleSelection(int xPos, int yPos) {
+
+        // If there was a click before this, we have to move a piece from
+        // the old location to this one. If there was no click before this,
+        // we have to save the values for the next click.
+        if (hasPreviousClick) {
+
+            // Check if the click is on a different square.
+            if (lastClickedX == xPos && lastClickedY == yPos) {
+
+                // If the same cell is clicked, clear the selection.
+                hasPreviousClick = false;
+                possibleMoves.clear();
+                grid.clearHighlightAndMark();
+
+                // Repaint the canvas.
+                canvas.repaint();
+
+                return;
+            }
+
+            // Only allow moves that are valid.
+            if (!possibleMoves.contains(grid.getCell(xPos, yPos))) {
+                return;
+            }
+
+            // Move the piece.
+            grid.move(lastClickedX, lastClickedY, xPos, yPos);
+            nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE
+                    ? Piece.PieceColor.BLACK
+                    : Piece.PieceColor.WHITE;
+
+            // Add the move to the move history.
+            moveHistory.add(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY) + ":"
+                    + Grid.coordinatesToChessNotation(xPos, yPos));
+
+            // Clear previous click tracker, previous moves and highlights.
+            hasPreviousClick = false;
+            possibleMoves.clear();
+            grid.clearHighlightAndMark();
+
+        } else {
+
+            // Check if there is a piece at the location.
+            Cell clickedCell = grid.getCell(xPos, yPos);
+            if (!clickedCell.hasPiece()) {
+                return;
+            }
+
+            if (clickedCell.getPiece().getColor() != nextPlayerColor) {
+                return;
+            }
+
+            // Save the possible moves.
+            possibleMoves = clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
+
+            // Mark all the cells that a move can be made to.
+            for (Cell cell : possibleMoves) {
+                cell.setMark(true);
+            }
+
+            // Sete the flag for a previous click.
+            hasPreviousClick = true;
+
+            // Save the click location.
+            lastClickedX = xPos;
+            lastClickedY = yPos;
+
+            // Add highlighting to the cell just clicked.
+            grid.getCell(xPos, yPos).setHighlight(true);
+
+        }
+
+        // Repaint the canvas. This is needed wither way, as cell highlighting
+        // at the least changes every time.
+
+        canvas.repaint();
+    }
+
     /**
      * A canvas for the chess board based on a JPanel.
      */
@@ -268,13 +360,7 @@ public class ChessGame {
     /**
      * An object that handles mouse presses inside the canvas.
      */
-    class MouseHandler implements MouseListener {
-
-        // Variables for moving pieces with clicks.
-        private boolean hasPreviousClick = false;
-        private int lastClickedX = 0;
-        private int lastClickedY = 0;
-        private Piece.PieceColor nextPlayerColor = Piece.PieceColor.WHITE;
+    class InputHandler implements MouseListener, KeyListener {
 
         /*
          * Mouse Listeners
@@ -302,80 +388,102 @@ public class ChessGame {
             int xPos = e.getX() / 100;
             int yPos = e.getY() / 100;
 
-            // If there was a click before this, we have to move a piece from
-            // the old location to this one. If there was no click before this,
-            // we have to save the values for the next click.
-            if (hasPreviousClick) {
+            grid.getCell(cursorCurrentX, cursorCurrentY).setCursor(false);
 
-                // Check if the click is on a different square.
-                if (lastClickedX == xPos && lastClickedY == yPos) {
+            handleSelection(xPos, yPos);
+
+        }
+
+        /*
+         * KeyListener
+         *
+         * Event handlers for keyboard input.
+         */
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+            int xDelta = 0;
+            int yDelta = 0;
+
+            switch (e.getKeyCode()) {
+
+                // Move up.
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
+                case KeyEvent.VK_K:
+
+                    xDelta = 0;
+                    yDelta = -1;
+
+                    break;
+
+                // Move down.
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
+                case KeyEvent.VK_J:
+
+                    xDelta = 0;
+                    yDelta = 1;
+
+                    break;
+
+                // Move left.
+                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
+                case KeyEvent.VK_H:
+
+                    xDelta = -1;
+                    yDelta = 0;
+
+                    break;
+
+                // Move right.
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
+                case KeyEvent.VK_L:
+
+                    xDelta = 1;
+                    yDelta = 0;
+
+                    break;
+
+                case KeyEvent.VK_ENTER:
+
+                    handleSelection(cursorCurrentX, cursorCurrentY);
+
+                    break;
+
+                case KeyEvent.VK_ESCAPE:
 
                     // If the same cell is clicked, clear the selection.
                     hasPreviousClick = false;
                     possibleMoves.clear();
                     grid.clearHighlightAndMark();
 
-                    // Repaint the canvas.
-                    canvas.repaint();
+                    break;
 
-                    return;
-                }
-
-                // Only allow moves that are valid.
-                if (!possibleMoves.contains(grid.getCell(xPos, yPos))) {
-                    return;
-                }
-
-                // Move the piece.
-                grid.move(lastClickedX, lastClickedY, xPos, yPos);
-                nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE ? Piece.PieceColor.BLACK
-                        : Piece.PieceColor.WHITE;
-
-                // Add the move to the move history.
-                moveHistory.add(Grid.coordinatesToChessNotation(lastClickedX, lastClickedY) + ":"
-                        + Grid.coordinatesToChessNotation(xPos, yPos));
-
-                // Clear previous click tracker, previous moves and highlights.
-                hasPreviousClick = false;
-                possibleMoves.clear();
-                grid.clearHighlightAndMark();
-
-            } else {
-
-                // Check if there is a piece at the location.
-                Cell clickedCell = grid.getCell(xPos, yPos);
-                if (!clickedCell.hasPiece()) {
-                    return;
-                }
-
-                if (clickedCell.getPiece().getColor() != nextPlayerColor) {
-                    return;
-                }
-
-                // Save the possible moves.
-                possibleMoves = clickedCell.getPiece().getPossibleMoves(grid, clickedCell);
-
-                // Mark all the cells that a move can be made to.
-                for (Cell cell : possibleMoves) {
-                    cell.setMark(true);
-                }
-
-                // Sete the flag for a previous click.
-                hasPreviousClick = true;
-
-                // Save the click location.
-                lastClickedX = xPos;
-                lastClickedY = yPos;
-
-                // Add highlighting to the cell just clicked.
-                grid.getCell(xPos, yPos).setHighlight(true);
-
+                default:
+                    break;
             }
 
-            // Repaint the canvas. This is needed wither way, as cell highlighting
-            // at the least changes every time.
+            grid.getCell(cursorCurrentX, cursorCurrentY).setCursor(false);
+
+            cursorCurrentX = (8 + cursorCurrentX + xDelta) % 8;
+            cursorCurrentY = (8 + cursorCurrentY + yDelta) % 8;
+
+            grid.getCell(cursorCurrentX, cursorCurrentY).setCursor(true);
 
             canvas.repaint();
+
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
         }
     }
 }
