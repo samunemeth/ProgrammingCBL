@@ -11,7 +11,7 @@ public class Grid {
     // The cells inside the grid.
     Cell[][] cells = new Cell[SIZE][SIZE];
 
-    // The side length of one cell in pixes.
+    // The side length of one cell in pixels.
     private int sideLength;
 
     /**

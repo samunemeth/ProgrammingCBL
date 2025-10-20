@@ -3,19 +3,23 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.event.ActionListener;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-
-import javax.swing.JOptionPane;
+import javax.swing.border.EmptyBorder;
 
 /**
  * A Simple chess game implementation.
@@ -45,9 +49,6 @@ public class ChessGame {
     private int lastClickedY = 0;
     private Piece.PieceColor nextPlayerColor = Piece.PieceColor.WHITE;
 
-    int cursorCurrentX = 3;
-    int cursorCurrentY = 3;
-
     /**
      * Create a new Chess Game.
      * 
@@ -59,7 +60,7 @@ public class ChessGame {
 
     /**
      * Resets the game state and creates a window. There is no game loop,
-     * renderting happens only on demand.
+     * rendering happens only on demand.
      */
     public ChessGame() {
 
@@ -88,83 +89,39 @@ public class ChessGame {
 
         // Quit on window close.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.setLayout(new FlowLayout());
 
-        // Create a new game panel.
+        // --- Canvas ---
+        
         canvas = new Canvas();
+        canvas.setFocusable(true);
+
+        // Create and add input handler.
         InputHandler inputHandler = new InputHandler();
         canvas.addMouseListener(inputHandler);
         canvas.addKeyListener(inputHandler);
-        canvas.setFocusable(true);
+
         frame.add(canvas);
+        
+        Box sideButtons = new Box(BoxLayout.Y_AXIS);
 
-        // Variables for button images
-        Image image;
-        Image newImg;
+        // --- Resign Button ---
 
-        // // Validate Button
-        // JButton enterButton = new JButton();
-        // frame.add(enterButton);
-        //
-        // enterButton.setFocusable(false);
-        // ImageIcon checkmarkIcon = new ImageIcon("assets/buttons/check.jpg");
-        // image = checkmarkIcon.getImage();
-        // newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-        // checkmarkIcon = new ImageIcon(newImg);
-        //
-        // enterButton.setIcon(checkmarkIcon);
-        // // @TODO: FIXHERE!
-        // enterButton.setMnemonic(
-        // javax.swing.KeyStroke.getKeyStroke("ENTER").getKeyCode());
-        // enterButton.setToolTipText("Validate Move (Enter)");
-        // enterButton.addActionListener(new ActionListener() {
-        // @Override
-        // public void actionPerformed(java.awt.event.ActionEvent e) {
-        // System.out.println("Enter button pressed");
-        // }
-        // });
-        // enterButton.setPreferredSize(new Dimension(80, 80));
-        // enterButton.setBounds(200, 300, 80, 80);
-        //
-        // // Dicard Button
-        // JButton crossButton = new JButton();
-        // frame.add(crossButton);
-        //
-        // crossButton.setFocusable(false);
-        // ImageIcon crossIcon = new ImageIcon("assets/buttons/cross.jpg");
-        // image = crossIcon.getImage();
-        // newImg = image.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
-        // crossIcon = new ImageIcon(newImg);
-        //
-        // crossButton.setIcon(crossIcon);
-        // // @TODO: FIXHERE!
-        // crossButton.setMnemonic(KeyEvent.VK_DELETE);
-        // crossButton.setToolTipText("Discard Move (Delete)");
-        // crossButton.addActionListener(new ActionListener() {
-        // @Override
-        // public void actionPerformed(java.awt.event.ActionEvent e) {
-        // System.out.println("Detel button pressed");
-        // }
-        // });
-        // crossButton.setPreferredSize(new Dimension(80, 80));
-        // crossButton.setBounds(200, 300, 80, 80);
-
-        // Resignation Button
+        // Create the button with default settings.
         JButton resignButton = new JButton();
-        frame.add(resignButton);
         resignButton.setToolTipText("Resign");
+        resignButton.setFocusable(true);
 
-        resignButton.setFocusable(false);
-        ImageIcon resignIcon = new ImageIcon("assets/buttons/resignation.jpg");
-        image = resignIcon.getImage();
-        newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-        resignIcon = new ImageIcon(newImg);
+        // Set the icon for the button.
+        ImageIcon resignIcon = new ImageIcon(
+                new ImageIcon("assets/buttons/resign-new.png").getImage()
+                        .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         resignButton.setIcon(resignIcon);
 
-        resignButton.setPreferredSize(new Dimension(50, 50));
-        resignButton.setBounds(200, 300, 60, 60);
+        // Set the size of the button 
+        resignButton.setPreferredSize(new Dimension(80, 80));
 
+        // Add listeners to the button.
         resignButton.addActionListener(e -> {
             int playerResigning = JOptionPane.showOptionDialog(
                     frame, "Which player would like to resign?", "Player Confirmation",
@@ -191,22 +148,27 @@ public class ChessGame {
             }
         });
 
-        // Draw Button
-        JButton drawButton = new JButton();
-        frame.add(drawButton);
-        drawButton.setToolTipText("Draw");
+        sideButtons.add(resignButton);
+        
+        sideButtons.add(Box.createRigidArea(new Dimension(0, 20)));
+        
+        // --- Draw Button ---
 
-        drawButton.setFocusable(false);
-        // @TODO Add the draw button image
-        ImageIcon drawIcon = new ImageIcon("assets/buttons/draw.png");
-        image = drawIcon.getImage();
-        newImg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-        drawIcon = new ImageIcon(newImg);
+        // Create the button with default settings.
+        JButton drawButton = new JButton();
+        drawButton.setToolTipText("Draw");
+        drawButton.setFocusable(true);
+
+        // Set the icon for the button.
+        ImageIcon drawIcon = new ImageIcon(
+                new ImageIcon("assets/buttons/draw-new.png").getImage()
+                        .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         drawButton.setIcon(drawIcon);
 
-        drawButton.setPreferredSize(new Dimension(50, 50));
-        drawButton.setBounds(200, 300, 60, 60);
+        // Set the size of the button.
+        drawButton.setPreferredSize(new Dimension(80, 80));
 
+        // Add listeners to the button.
         drawButton.addActionListener(e -> {
             int response = JOptionPane.showConfirmDialog(frame,
                     "Are you sure you want to draw?", "Confirm Draw",
@@ -215,8 +177,12 @@ public class ChessGame {
 
             if (response == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(frame, "Game is a Drawn");
-            } 
+            }
         });
+
+        sideButtons.add(drawButton);
+        
+        frame.add(sideButtons);
 
         // Pack the elements and make the window visible.
         frame.pack();
@@ -252,6 +218,8 @@ public class ChessGame {
 
             // Move the piece.
             grid.move(lastClickedX, lastClickedY, xPos, yPos);
+            
+            // Change the next player after a move.
             nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE
                     ? Piece.PieceColor.BLACK
                     : Piece.PieceColor.WHITE;
@@ -317,7 +285,7 @@ public class ChessGame {
         /*
          * JPanel Size
          * 
-         * Force a panel size bz setting preferred, minimum, and maximum to the
+         * Force a panel size by setting preferred, minimum, and maximum to the
          * same value.
          */
 
@@ -349,8 +317,6 @@ public class ChessGame {
             Graphics2D graphics = (Graphics2D) g;
 
             // Draw grid.
-            // graphics.setColor(Color.GREEN);
-            // graphics.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             grid.show(graphics);
 
         }
@@ -361,6 +327,10 @@ public class ChessGame {
      * An object that handles mouse presses inside the canvas.
      */
     class InputHandler implements MouseListener, KeyListener {
+
+        // Store the position of the cursor on the grid.
+        int cursorCurrentX = 3;
+        int cursorCurrentY = 3;
 
         /*
          * Mouse Listeners
