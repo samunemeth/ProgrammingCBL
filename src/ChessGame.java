@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -89,7 +90,7 @@ public class ChessGame {
 
         // Quit on window close.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
+        frame.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
 
         // --- Canvas ---
         
@@ -103,34 +104,29 @@ public class ChessGame {
 
         frame.add(canvas);
         
+        // --- Side Buttons ---
+        
         Box sideButtons = new Box(BoxLayout.Y_AXIS);
+        sideButtons.add(Box.createRigidArea(new Dimension(0, 5)));
 
-        // --- Resign Button ---
+        // --- Resign Button Black ---
 
         // Create the button with default settings.
-        JButton resignButton = new JButton();
-        resignButton.setToolTipText("Resign");
-        resignButton.setFocusable(true);
+        JButton resignButtonBlack = new JButton();
+        resignButtonBlack.setToolTipText("Resign");
+        resignButtonBlack.setFocusable(true);
 
         // Set the icon for the button.
-        ImageIcon resignIcon = new ImageIcon(
+        ImageIcon resignIconBlack = new ImageIcon(
                 new ImageIcon("assets/buttons/resign-new.png").getImage()
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
-        resignButton.setIcon(resignIcon);
+        resignButtonBlack.setIcon(resignIconBlack);
 
         // Set the size of the button 
-        resignButton.setPreferredSize(new Dimension(80, 80));
+        resignButtonBlack.setPreferredSize(new Dimension(80, 80));
 
         // Add listeners to the button.
-        resignButton.addActionListener(e -> {
-            int playerResigning = JOptionPane.showOptionDialog(
-                    frame, "Which player would like to resign?", "Player Confirmation",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-                    Piece.PieceColor.values(), Piece.PieceColor.WHITE);
-
-            if (playerResigning == JOptionPane.CLOSED_OPTION) {
-                return;
-            }
+        resignButtonBlack.addActionListener(e -> {
 
             int response = JOptionPane.showConfirmDialog(frame,
                     "Are you sure you want to resign?", "Confirm Resignation",
@@ -138,19 +134,13 @@ public class ChessGame {
                     JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                if (playerResigning == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(frame, "Black Wins");
-                } else {
-                    JOptionPane.showMessageDialog(frame, "White Wins");
-                }
-            } else {
-                return;
+                JOptionPane.showMessageDialog(frame, "White Wins");
             }
+
         });
 
-        sideButtons.add(resignButton);
-        
-        sideButtons.add(Box.createRigidArea(new Dimension(0, 20)));
+        sideButtons.add(resignButtonBlack);
+        sideButtons.add(Box.createRigidArea(new Dimension(0, 273)));
         
         // --- Draw Button ---
 
@@ -170,17 +160,52 @@ public class ChessGame {
 
         // Add listeners to the button.
         drawButton.addActionListener(e -> {
+
             int response = JOptionPane.showConfirmDialog(frame,
                     "Are you sure you want to draw?", "Confirm Draw",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(frame, "Game is a Drawn");
+                JOptionPane.showMessageDialog(frame, "It's a Draw");
             }
+
         });
 
         sideButtons.add(drawButton);
+        sideButtons.add(Box.createRigidArea(new Dimension(0, 273)));
+        
+        // --- Resign Button White ---
+
+        // Create the button with default settings.
+        JButton resignButtonWhite = new JButton();
+        resignButtonWhite.setToolTipText("Resign");
+        resignButtonWhite.setFocusable(true);
+
+        // Set the icon for the button.
+        ImageIcon resignIconWhite = new ImageIcon(
+                new ImageIcon("assets/buttons/resign-new.png").getImage()
+                        .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
+        resignButtonWhite.setIcon(resignIconWhite);
+
+        // Set the size of the button 
+        resignButtonWhite.setPreferredSize(new Dimension(80, 80));
+
+        // Add listeners to the button.
+        resignButtonWhite.addActionListener(e -> {
+
+            int response = JOptionPane.showConfirmDialog(frame,
+                    "Are you sure you want to resign?", "Confirm Resignation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(frame, "Black Wins");
+            }
+
+        });
+        
+        sideButtons.add(resignButtonWhite);
         
         frame.add(sideButtons);
 
