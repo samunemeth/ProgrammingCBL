@@ -1,6 +1,6 @@
 # CBL Chess Game
 
-This repository can be found here: []()
+This repository can be found here: [https://github.com/samunemeth/ProgrammingCBL](https://github.com/samunemeth/ProgrammingCBL)
 
 ## Usage
 
