@@ -1,19 +1,15 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Insets;
+import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -22,12 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-import java.awt.KeyboardFocusManager;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 /**
  * A Simple chess game implementation.
@@ -259,8 +249,7 @@ public class ChessGame {
             }
 
         });
-        
-        
+
         // Add focus listener.
         resignButtonWhite.setOpaque(true);
         resignButtonWhite.setContentAreaFilled(true);
@@ -336,7 +325,7 @@ public class ChessGame {
                 } else {
                     state = GameEndState.WHITE_WIN;
                 }
-                grid.move(lastClickedX, lastClickedY, destinationCell.getX(), destinationCell.getY());
+                grid.move(lastClickedX, lastClickedY, xPos, yPos);
                 // Clear previous click tracker, previous moves and highlights.
                 hasPreviousClick = false;
                 possibleMoves.clear();
