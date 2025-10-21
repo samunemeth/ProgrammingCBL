@@ -47,6 +47,7 @@ public class ChessGame {
 
     // A modified JFrame acting as the canvas for the game.
     private Canvas canvas;
+    private JFrame frame;
 
     ArrayList<Cell> possibleMoves = new ArrayList<Cell>();
     ArrayList<String> moveHistory = new ArrayList<String>();
@@ -101,7 +102,7 @@ public class ChessGame {
     private void initializeWindow() {
 
         // Create a new window.
-        JFrame frame = new JFrame("ChessGame");
+        frame = new JFrame("ChessGame");
 
         // Quit on window close.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -341,7 +342,7 @@ public class ChessGame {
                 possibleMoves.clear();
                 grid.clearHighlightAndMark();
                 canvas.repaint();
-                endGame(state, null);
+                endGame(state, frame);
             }
 
             grid.move(lastClickedX, lastClickedY, destinationCell.getX(), destinationCell.getY());
