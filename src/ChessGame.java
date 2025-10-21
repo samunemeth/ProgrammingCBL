@@ -134,7 +134,7 @@ public class ChessGame {
 
         // Set the icon for the button.
         ImageIcon resignIconBlack = new ImageIcon(
-                new ImageIcon("assets/buttons/resign-new.png").getImage()
+                new ImageIcon("assets/buttons/resign.png").getImage()
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         resignButtonBlack.setIcon(resignIconBlack);
 
@@ -186,7 +186,7 @@ public class ChessGame {
 
         // Set the icon for the button.
         ImageIcon drawIcon = new ImageIcon(
-                new ImageIcon("assets/buttons/draw-new.png").getImage()
+                new ImageIcon("assets/buttons/draw.png").getImage()
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         drawButton.setIcon(drawIcon);
 
@@ -238,7 +238,7 @@ public class ChessGame {
 
         // Set the icon for the button.
         ImageIcon resignIconWhite = new ImageIcon(
-                new ImageIcon("assets/buttons/resign-new.png").getImage()
+                new ImageIcon("assets/buttons/resign.png").getImage()
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         resignButtonWhite.setIcon(resignIconWhite);
 

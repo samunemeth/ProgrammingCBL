@@ -72,7 +72,7 @@ public abstract class Piece {
 
         String fullAssetPath = "assets/"
                 + (color == Piece.PieceColor.WHITE ? "white" : "black")
-                + "/" + getAssetName() + "80.png";
+                + "/" + getAssetName() + ".png";
 
         // Get he path to the asset and load the file.
         try {
