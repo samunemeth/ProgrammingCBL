@@ -1,5 +1,31 @@
 # CBL Chess Game
 
+## Usage
+
+Run the `ChessGame.java` file from the `src` directory to run the game.
+
+White starts. You can click a piece to show what available moves it has.
+You can click on the same piece again to cancel the selection, or press escape.
+The possible moves are marked with blue circles. Clicking on one of the possible
+destination squares moves the piece. After a move, it's the other players turn.
+Therefore, you can only select black pieces after the first move, and so on.
+The game ends when one player captures the other players king.
+
+There are buttons on the side for special options. Then flags indicate the
+resignation of the player on that side (the button next to white means white is
+resigning and black wins). The center button indicates a draw. Both players have
+to agree to a draw beforehand.
+
+Navigation with only the keyboard is also possible. Focus on the game area, then
+you can move the yellow cursor (that only apperas after pressing a key) with the
+arrow keys, WASD or HJKL (it really is up to your preference). You can 'click' on
+the cell the cursor is on with enter, and cancel a selection with escape.
+You can use tab to move through the buttons and canvas itself. You can click
+buttons with enter. This way, the game can be played with keyboard input only.
+
+The game can end by capturing one of the kings, resignation or an agreed draw.
+The window closes after the game is over.
+
 ## Synopsis
 
 A simple hot seat implementation of a 2 player chess game.
@@ -51,23 +77,9 @@ A simple hot seat implementation of a 2 player chess game.
     - Demo: Do not allow the piece to move if the move is incorrect.
     - Note: This requires that there is a function for each piece type that
       can determine if the piece can move there.
-  - [ ] Add a box that displays the past moves.
-    - Demo: Check if the rendered past moves are the same ones displayed in
-      the terminal.
-  - [ ] Add discard button. *(Learning Topic)*
-    - Demo: Discard button discards the start and end position clicked while 
-    - Note: Do not complete the move immediately, offer the option of
-      discarding the move.
-  - [ ] Add enter button. *(Learning Topic)*
-    - Demo: Enter button performs and updates the positions accordingly
-      otherwise doesn't do anything.
-    - Note: Replace the mechanic of automatically completing the move.
-  - [ ] Display the consequence of the move:
-    - Demo: Performs the move and checks the results
-    - Note: Check what kind of cell the piece is moving to.
   
 > [!NOTE]
-> If we have time, we may also implement special xxmoves
+> If we have time, we may also implement special moves
 > or we may do checking of checks and checkmate.
 > 
 > We will not implement any kind of chess solving algorithm.
@@ -79,6 +91,7 @@ We want to learn to do the following things with this project:
   - Version control and project management with git.
   - Adopting common design patterns concerning class structure.
   - Graphical user input handling.
+  - Accessible user input.
 
 ## Resources
 
