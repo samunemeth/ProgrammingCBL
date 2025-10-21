@@ -50,6 +50,14 @@ public class ChessGame {
     private int lastClickedY = 0;
     private Piece.PieceColor nextPlayerColor = Piece.PieceColor.WHITE;
 
+    private enum GameEndState {
+        WHITE_WIN,
+        BLACK_WIN,
+        DRAW
+    }
+
+    private GameEndState state;
+
     /**
      * Create a new Chess Game.
      * 
@@ -134,7 +142,8 @@ public class ChessGame {
                     JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(frame, "White Wins");
+                state = GameEndState.WHITE_WIN;
+                endGame(state, frame);
             }
 
         });
@@ -167,7 +176,8 @@ public class ChessGame {
                     JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(frame, "It's a Draw");
+                state = GameEndState.DRAW;
+                endGame(state, frame);
             }
 
         });
@@ -200,7 +210,8 @@ public class ChessGame {
                     JOptionPane.WARNING_MESSAGE);
 
             if (response == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(frame, "Black Wins");
+                state = GameEndState.BLACK_WIN;
+                endGame(state, frame);
             }
 
         });
@@ -213,6 +224,18 @@ public class ChessGame {
         frame.pack();
         frame.setVisible(true);
 
+    }
+
+    private void endGame(GameEndState state, JFrame frame) {
+        if (state == GameEndState.WHITE_WIN) {
+            JOptionPane.showMessageDialog(frame, "White Wins");
+        } else if (state == GameEndState.BLACK_WIN) {
+            JOptionPane.showMessageDialog(frame, "Black Wins");
+        } else if (state == GameEndState.DRAW) {
+            JOptionPane.showMessageDialog(frame, "It's a Draw");
+        }
+
+        System.exit(0);
     }
 
     private void handleSelection(int xPos, int yPos) {
