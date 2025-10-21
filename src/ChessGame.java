@@ -1,10 +1,12 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,6 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+import java.awt.KeyboardFocusManager;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * A Simple chess game implementation.
@@ -101,7 +108,7 @@ public class ChessGame {
         frame.setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
 
         // --- Canvas ---
-        
+
         canvas = new Canvas();
         canvas.setFocusable(true);
 
@@ -111,9 +118,9 @@ public class ChessGame {
         canvas.addKeyListener(inputHandler);
 
         frame.add(canvas);
-        
+
         // --- Side Buttons ---
-        
+
         Box sideButtons = new Box(BoxLayout.Y_AXIS);
         sideButtons.add(Box.createRigidArea(new Dimension(0, 5)));
 
@@ -130,7 +137,7 @@ public class ChessGame {
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         resignButtonBlack.setIcon(resignIconBlack);
 
-        // Set the size of the button 
+        // Set the size of the button
         resignButtonBlack.setPreferredSize(new Dimension(80, 80));
 
         // Add listeners to the button.
@@ -148,9 +155,27 @@ public class ChessGame {
 
         });
 
+        // Add focus listener.
+        resignButtonBlack.setOpaque(true);
+        resignButtonBlack.setContentAreaFilled(true);
+        resignButtonBlack.addFocusListener(
+                new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        resignButtonBlack.setBackground(new Color(255, 205, 112));
+                        resignButtonBlack.repaint();
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        resignButtonBlack.setBackground(Color.WHITE);
+                        resignButtonBlack.repaint();
+                    }
+                });
+
         sideButtons.add(resignButtonBlack);
         sideButtons.add(Box.createRigidArea(new Dimension(0, 273)));
-        
+
         // --- Draw Button ---
 
         // Create the button with default settings.
@@ -182,9 +207,27 @@ public class ChessGame {
 
         });
 
+        // Add focus listener.
+        drawButton.setOpaque(true);
+        drawButton.setContentAreaFilled(true);
+        drawButton.addFocusListener(
+                new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        drawButton.setBackground(new Color(255, 205, 112));
+                        drawButton.repaint();
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        drawButton.setBackground(Color.WHITE);
+                        drawButton.repaint();
+                    }
+                });
+
         sideButtons.add(drawButton);
         sideButtons.add(Box.createRigidArea(new Dimension(0, 273)));
-        
+
         // --- Resign Button White ---
 
         // Create the button with default settings.
@@ -198,7 +241,7 @@ public class ChessGame {
                         .getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH));
         resignButtonWhite.setIcon(resignIconWhite);
 
-        // Set the size of the button 
+        // Set the size of the button
         resignButtonWhite.setPreferredSize(new Dimension(80, 80));
 
         // Add listeners to the button.
@@ -216,8 +259,27 @@ public class ChessGame {
 
         });
         
-        sideButtons.add(resignButtonWhite);
         
+        // Add focus listener.
+        resignButtonWhite.setOpaque(true);
+        resignButtonWhite.setContentAreaFilled(true);
+        resignButtonWhite.addFocusListener(
+                new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        resignButtonWhite.setBackground(new Color(255, 205, 112));
+                        resignButtonWhite.repaint();
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        resignButtonWhite.setBackground(Color.WHITE);
+                        resignButtonWhite.repaint();
+                    }
+                });
+
+        sideButtons.add(resignButtonWhite);
+
         frame.add(sideButtons);
 
         // Pack the elements and make the window visible.
@@ -283,7 +345,7 @@ public class ChessGame {
             }
 
             grid.move(lastClickedX, lastClickedY, destinationCell.getX(), destinationCell.getY());
-            
+
             // Change the next player after a move.
             nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE
                     ? Piece.PieceColor.BLACK
