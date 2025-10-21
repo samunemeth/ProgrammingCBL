@@ -264,8 +264,25 @@ public class ChessGame {
                 return;
             }
 
-            // Move the piece.
-            grid.move(lastClickedX, lastClickedY, xPos, yPos);
+            // Check if king is being captured
+            Cell destinationCell = grid.getCell(xPos, yPos);
+
+            if (destinationCell.hasPiece() && destinationCell.getPiece() instanceof King) {
+                if (destinationCell.getPiece().getColor() == Piece.PieceColor.WHITE) {
+                    state = GameEndState.BLACK_WIN;
+                } else {
+                    state = GameEndState.WHITE_WIN;
+                }
+                grid.move(lastClickedX, lastClickedY, destinationCell.getX(), destinationCell.getY());
+                // Clear previous click tracker, previous moves and highlights.
+                hasPreviousClick = false;
+                possibleMoves.clear();
+                grid.clearHighlightAndMark();
+                canvas.repaint();
+                endGame(state, null);
+            }
+
+            grid.move(lastClickedX, lastClickedY, destinationCell.getX(), destinationCell.getY());
             
             // Change the next player after a move.
             nextPlayerColor = nextPlayerColor == Piece.PieceColor.WHITE
